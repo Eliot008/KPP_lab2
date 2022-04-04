@@ -249,6 +249,25 @@ var button_3 = blessed.button({
   },
 });
 
+var input_1 = blessed.textarea({
+  parent: form_1,
+  top: '10%',
+  left: '25%',
+  width: '50%',
+  height: '10%',
+  colors: 'black',
+  inputOnFocus: true,
+  content: '3',
+  tags: true,
+  style: {
+      bg: 'white',
+      fg: 'black',
+      focus: {
+          bg: 'blue'
+        }   
+  }
+});
+
 // Quit on Escape, q, or Control-C.
 screen.key(["escape", "q", "C-c"], function (ch, key) {
   return process.exit(0);
@@ -270,10 +289,15 @@ button_2.on("press", function () {
 });
 button_3.on("press", function () {
   //start
+  if(input_1.value==1) speed=3000;
+  else if(input_1.value==2) speed=2000;
+  else if(input_1.value==3) speed=1000;
+  if(input_1.value=='') speed=3000;
+
   id = setInterval(() => {
     A.update_field();
     A.cout_arr();
-  }, 100);
+  }, speed);
 });
 
 
@@ -285,11 +309,11 @@ form_1.append(label_1);
 form_1.append(button_1);
 form_1.append(button_2);
 form_1.append(button_3);
-
+form_1.append(input_1);
 
 
 screen.title = "Game of life";
 var A = new field_completion(0, 0, 0); 
-var id; // setInterval
+var id; // setInterval 100- 1x 50 - 2x 10 - 4x
 
 screen.render();

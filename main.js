@@ -225,10 +225,10 @@ var button_2 = blessed.button({
   tags: true,
   content: "Stop",
   style: {
-    bg: "#FFF830",
-    fg: "black",
+    bg: "#gray", // bg: "#FFF830",
+    fg: "#ffffff",   // fg: "black",
     focus: {
-      bg: "green",
+      bg: "green", // bg: "green",
     },
   },
 });
@@ -241,20 +241,20 @@ var button_3 = blessed.button({
   tags: true,
   content: "Start",
   style: {
-    bg: "#FFF830",
-    fg: "black",
+    bg: "gray", // bg: "#FFF830",
+    fg: "#ffffff",   // fg: "black",
     focus: {
-      bg: "green",
+      bg: "green", // bg: "green",
     },
   },
 });
 
 var input_1 = blessed.textarea({
   parent: form_1,
-  top: '10%',
-  left: '25%',
-  width: '50%',
-  height: '10%',
+  top: '13%',
+  left: '42%',
+  width: '25%',
+  height: '5%',
   colors: 'black',
   inputOnFocus: true,
   content: '3',
@@ -272,7 +272,6 @@ var input_1 = blessed.textarea({
 screen.key(["escape", "q", "C-c"], function (ch, key) {
   return process.exit(0);
 });
-
 // action buttons
 button_1.on("press", function () {
   //fill
@@ -281,6 +280,11 @@ button_1.on("press", function () {
     parseInt(main_field_box.width / 2)
   );
   A.cout_arr();
+  button_2.style.bg="#FFF830";
+  button_2.style.fg="black";
+
+  button_3.style.bg="#FFF830";
+  button_3.style.fg="black";
 });
 button_2.on("press", function () {
   //stop
@@ -289,10 +293,10 @@ button_2.on("press", function () {
 });
 button_3.on("press", function () {
   //start
-  if(input_1.value==1) speed=3000;
-  else if(input_1.value==2) speed=2000;
-  else if(input_1.value==3) speed=1000;
-  if(input_1.value=='') speed=3000;
+  if (input_1.value==1) speed=3000;
+  else if (input_1.value==2) speed=2000;
+  else if (input_1.value==3) speed=1000;
+  if (input_1.value=='') speed=3000;
 
   id = setInterval(() => {
     A.update_field();
